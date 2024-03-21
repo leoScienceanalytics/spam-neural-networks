@@ -1,0 +1,57 @@
+## Funções de Ativação em Redes Neurais
+
+As funções de ativação são componentes essenciais das redes neurais artificiais (RNAs), 
+desempenhando um papel crucial na introdução de **não linearidade** no modelo. 
+Elas operam sobre a soma ponderada das entradas de um neurônio e determinam se o neurônio deve ser ativado ou não, e, em caso afirmativo, 
+qual será a força da sua ativação. 
+
+### Funções de Ativação Comuns:
+
+**1. Sigmoide (Função Logística):**
+
+* Transforma a entrada em um valor entre 0 e 1, interpretando-o como uma probabilidade.
+* Comumente utilizada em problemas de classificação binária (por exemplo, spam ou não spam).
+* Pode apresentar problemas com o gradiente durante o treinamento (desaparecimento do gradiente).
+
+**2. Tangente Hiperbólica (tanh):**
+
+* Similar à função sigmoide, mas com intervalo de saída entre -1 e 1.
+* Útil para problemas de classificação e regressão.
+* Pode sofrer com o problema do gradiente em valores próximos de -1 ou 1.
+
+**3. ReLU (Rectified Linear Unit):**
+
+* Define a saída como a entrada se positiva, ou zero caso contrário.
+* É a função de ativação mais utilizada atualmente devido à sua simplicidade e eficiência computacional.
+* Pode apresentar o problema de "morte de neurônios" se a entrada for constantemente negativa.
+
+**4. Leaky ReLU:**
+
+* Variante da ReLU que permite que a entrada negativa tenha uma pequena inclinação positiva.
+* Ajuda a evitar o problema da "morte de neurônios".
+
+**5. Softmax:**
+
+* Normaliza as saídas de um vetor em uma distribuição de probabilidade.
+* Utilizada em problemas de classificação multiclasse (por exemplo, reconhecimento de imagens).
+
+**6. Swish:**
+
+* Combina as características da ReLU e da Sigmoide, oferecendo o melhor dos dois mundos.
+* Pode apresentar um desempenho superior em algumas tarefas.
+
+### Escolhendo a Função de Ativação:
+
+A escolha da função de ativação depende de diversos fatores, como:
+
+* **Tipo de problema:** classificação, regressão, etc.
+* **Número de classes:** binária, multiclasse.
+* **Arquitetura da rede:** camadas escondidas, camada de saída.
+
+É importante experimentar diferentes funções para determinar qual se encaixa melhor em sua aplicação específica.
+
+### Recursos Adicionais:
+
+* **Artigo:** "Funções de ativação: definição, características, e quando usar cada uma": [https://iaexpert.academy/2020/05/25/funcoes-de-ativacao-definicao-caracteristicas-e-quando-usar-cada-uma/](https://iaexpert.academy/2020/05/25/funcoes-de-ativacao-definicao-caracteristicas-e-quando-usar-cada-uma/)
+* **Livro:** "Deep Learning": [https://www.deeplearningbook.com.br/funcao-de-ativacao/](https://www.deeplearningbook.com.br/funcao-de-ativacao/)
+* **Vídeo:** "Funções de Ativação em Redes Neurais": [URL inválido removido] (YouTube)
