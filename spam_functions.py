@@ -179,3 +179,5 @@ def graficos(loss_history, accuracy_history_treino):
     plt.ylabel('Accuracy')
     plt.title('Evoluação da Acurácia')
     plt.show()
+    
+#Perdas e Acurácia de treino já foram implementadas, próximo passo: Implementar Teste.
