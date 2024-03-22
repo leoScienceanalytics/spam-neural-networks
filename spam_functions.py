@@ -28,7 +28,7 @@ def tokenizer(X_train, x_test):
     return X_train, X_test, token
 
 
-def rede_neural(X_train, X_test, y_train, token):
+def rede_neural_treino(X_train, y_train, token):
     import pandas as pd
     from keras.models import Sequential 
     from keras.layers import Dense, Dropout, Flatten, Embedding
@@ -52,22 +52,22 @@ def rede_neural(X_train, X_test, y_train, token):
     #Treina o modelo com base nos conjuntos de treino
     
     
-    nova_previsao = modelo.predict(X_test)
+    nova_previsao = modelo.predict(X_train)
     print(nova_previsao)
-    prev = (nova_previsao > 0.5) 
-    prev = pd.DataFrame(prev)
+    prev_treino = (nova_previsao > 0.5) 
+    prev_treino = pd.DataFrame(prev_treino)
     print('Previsão de SPAM:')
-    print(prev)
-    return prev
+    print(prev_treino)
+    return prev_treino[:1672], modelo
     
-def metrics(y_test, prev):
+def metrics_treino(y_train, prev_treino):
     from sklearn.metrics import confusion_matrix, accuracy_score, precision_score, recall_score, f1_score, classification_report
     import matplotlib.pyplot as plt
     import seaborn as sns
     import numpy as np
     
     # Calculando as métricas
-    cm = confusion_matrix(y_test, prev) 
+    cm = confusion_matrix(y_train, prev_treino) 
     print('Matriz de Confusão:')
     print(cm)#Matriz de Confusão
     #Plotando a figura
@@ -81,24 +81,35 @@ def metrics(y_test, prev):
     ax.yaxis.set_ticklabels(['True','False'])
     plt.show() #Matriz de Confusão
 
-    accuracy = accuracy_score(y_test, prev)
+    accuracy = accuracy_score(y_train, prev_treino)
     accuracy = np.round(accuracy, 2)
     print("Acurácia:", accuracy) #Acurácia
 
-    precision = precision_score(y_test, prev)
+    precision = precision_score(y_train, prev_treino)
     precision = np.round(precision, 2)
     print("Precisão:", precision) #Precisão
 
-    recall = recall_score(y_test, prev)
+    recall = recall_score(y_train, prev_treino)
     recall = np.round(recall, 2)
     print("Recall:", recall) #Sensibilidade
 
-    f1 = f1_score(y_test, prev)
+    f1 = f1_score(y_train, prev_treino)
     f1 = np.round(f1, 2)
     print("F1-Score:", f1) #F1-Score
 
 
     target_names = ['ham', 'spam']
-    report  = classification_report(y_test, prev, target_names=target_names)
+    report  = classification_report(y_train, prev_treino, target_names=target_names)
     print(report) #Resumo métricas
+
+def rede_neural_test(X_test, modelo):
+    import pandas as pd
     
+   
+    nova_previsao = modelo.predict(X_test)
+    print(nova_previsao)
+    prev_test = (nova_previsao > 0.5) 
+    prev_test = pd.DataFrame(prev_test)
+    print('Previsão de SPAM:')
+    print(prev_test)
+    return prev_test
