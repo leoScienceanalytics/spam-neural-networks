@@ -41,8 +41,8 @@ def rede_neural_treino(X_train, y_train, token):
     modelo.add(Embedding(input_dim=len(token.word_index), output_dim=50, input_length=500)) 
     #Cria uma camada que madeia cada token para um vetor de 50 dimensões
     modelo.add(Flatten()) #Achata a saída para um vetor de 1 dimensão
-    modelo.add(Dense(units=10, activation='sigmoid')) 
-    #Adiciona camada de 10 neurônios, com ReLu de função ativação
+    modelo.add(Dense(units=50, activation='sigmoid')) 
+    #Adiciona camada de 50 neurônios, com Sigmoid de função ativação
     modelo.add(Dropout(0.1)) #Adiciona camada dropout para perda de 10%, evitando overfitting
     modelo.add(Dense(units=1, activation='sigmoid')) 
     #Adiciona 1 neurônio de saída com função de ativação sigmoid: Necessário para saídas binárias
