@@ -41,14 +41,18 @@ X_test = pad_sequences(X_test, padding='post', maxlen=500)
 #Criando o modelo de redes neurais
 modelo = Sequential() #Cria modelo de rede neural sequencial
 #Configurando o modelo de redes neurais
+#Camada de entrada
 modelo.add(Embedding(input_dim=len(token.word_index), output_dim=50, input_length=500)) 
 #Cria uma camada que madeia cada token para um vetor de 50 dimensões
+#Camada Oculta
 modelo.add(Flatten()) #Achata a saída para um vetor de 1 dimensão
 modelo.add(Dense(units=10, activation='relu')) 
 #Adiciona camada de 10 neurônios, com ReLu de função ativação
 modelo.add(Dropout(0.1)) #Adiciona camada dropout para perda de 10%, evitando overfitting
+#Camada de Saída
 modelo.add(Dense(units=1, activation='sigmoid')) 
 #Adiciona 1 neurônio de saída com função de ativação sigmoid: Necessário para saídas binárias
+
 modelo.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy']) 
 #Compila o modelo, definindo alguns parâmetros. Erro, Otimizador, e a métrica
 modelo.summary()
